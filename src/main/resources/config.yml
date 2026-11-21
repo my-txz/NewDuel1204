@@ -1,0 +1,79 @@
+# ============================================================
+#  NewDuel1204  -  configuration
+#  所有数值都可以在线 /nd reload 热重载（竞技场数量与世界名除外）
+# ============================================================
+config-version: 3
+
+world:
+  # 竞技场世界名。不存在时会用虚空生成器自动创建并预生成竞技场
+  name: newduel_arena
+  # 预生成的竞技场数量（建议 12 - 48，每个竞技场独占一块 3x3 区块的区域）
+  arena-count: 24
+  # 竞技场地板的基础高度
+  base-y: 100
+  # 每个竞技场之间的间距（方块），必须 >= 96 才不会互相干扰
+  cell-size: 128
+  # 启动时后台预生成竞技场（强烈建议开启：避免对战时卡顿）
+  pregenerate-on-start: true
+  # 掉落多少格判定为出界/坠落
+  void-fall-offset: 30
+
+match:
+  countdown-seconds: 3
+  # 分出胜负后停留在结算界面的时间
+  end-delay-seconds: 4
+  # 默认单局时长上限（秒），部分模式会覆盖此值
+  default-time-limit: 600
+  allow-spectate: true
+  broadcast-results: true
+  # 对局中禁止执行命令，防止玩家用 /spawn 逃跑
+  block-commands: true
+  blocked-commands:
+    - /spawn
+    - /home
+    - /tpa
+    - /tpahere
+    - /tp
+    - /warp
+    - /lobby
+    - /hub
+    - /rtp
+  allow-commands:
+    - /duel
+    - /queue
+  # 对局中禁止丢弃物品（默认阻止，避免装备丢失）
+  disable-item-drop: true
+  # 对局中禁止拾取掉落物
+  disable-item-pickup: true
+  # 攻击速度：16.0 = 接近 1.8 的快速手感（推荐），4.0 = 原版 1.9 冷却
+  attack-speed: 16.0
+
+ranked:
+  enabled: true
+  start-elo: 1000
+  k-factor: 32
+  provisional-matches: 10
+  season: 1
+  # 排位赛最低等级要求（0 = 不限制）
+  min-level: 0
+
+queue:
+  interval-ticks: 20
+  initial-elo-range: 100
+  # 每等待 10 秒扩大多少匹配范围
+  range-increase-per-10s: 100
+  max-elo-range: 800
+  max-wait-seconds: 420
+
+storage:
+  autosave-seconds: 120
+  # 快照备份保留小时数（用于误删找回）
+  snapshot-backup-hours: 72
+
+performance:
+  # 每个 tick 预生成几个竞技场
+  arena-pregenerate-per-tick: 1
+  # HUD（侧边栏 / 动作栏）刷新间隔 tick
+  hud-update-ticks: 10
+  # 单个竞技场可回滚的最大方块修改数量
+  max-undo-blocks: 30000
