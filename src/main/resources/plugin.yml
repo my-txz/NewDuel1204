@@ -1,0 +1,36 @@
+name: NewDuel1204
+version: '${project.version}'
+main: com.newduel1204.NewDuel1204
+api-version: '1.20'
+authors: [my-txz]
+description: High performance, low footprint duel / PvP arena plugin with matchmaking, ranked ladder and 21 game modes.
+website: https://github.com/my-txz/NewDuel1204
+folia-supported: false
+
+commands:
+  duel:
+    description: Open the duel menu, invite a player or manage your duels.
+    usage: /duel [player] [mode]
+    aliases: [d, duels]
+  queue:
+    description: Join or leave the matchmaking queue.
+    usage: /queue [mode] [ranked]
+    aliases: [q]
+  nd:
+    description: NewDuel1204 administration.
+    usage: /nd <reload|arena|snapshot|profile|season|version>
+    aliases: [newduel, nd1204]
+
+permissions:
+  newduel.use:
+    description: Allows using the basic duel features.
+    default: true
+  newduel.ranked:
+    description: Allows joining the ranked ladder.
+    default: true
+  newduel.spectate:
+    description: Allows spectating running duels.
+    default: true
+  newduel.admin:
+    description: Allows administrating the plugin.
+    default: op
