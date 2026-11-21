@@ -1,0 +1,76 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B -DskipTests clean package
+
+      - name: Show artifact
+        run: ls -lh target/*.jar
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NewDuel1204
+          path: target/NewDuel1204-*.jar
+          if-no-files-found: error
+
+      # 主分支：把最新构建发布到 latest 标签的 Release，方便直接下载 jar
+      - name: Publish latest build
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest Build
+          prerelease: true
+          files: target/NewDuel1204-*.jar
+          body: |
+            由 `main` 分支最新提交自动构建。
+
+            - 提交：${{ github.sha }}
+            - 环境：Paper 1.20.4 / Java 17
+            - 下载下方 `NewDuel1204-*.jar` 放入 `plugins/` 即可
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 版本标签：发布正式 Release
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: target/NewDuel1204-*.jar
+          generate_release_notes: true
+          body: |
+            ## NewDuel1204 ${{ github.ref_name }}
+
+            下载下方 `NewDuel1204-*.jar`，放入服务端 `plugins/` 目录后重启即可。
+
+            - 需要 Paper 1.20.4 与 Java 17+
+            - 首次启动会自动创建竞技场世界并预生成场地
+            - 不支持 Folia
+
+            详细说明见 [README](https://github.com/${{ github.repository }}#readme)。
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
