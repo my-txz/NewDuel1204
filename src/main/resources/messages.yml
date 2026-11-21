@@ -1,0 +1,78 @@
+# ============================================================
+#  NewDuel1204  -  messages (MiniMessage 格式)
+#  颜色示例: <red> <gradient:#ff4d6d:#ffb703> <bold> <italic>
+#  占位符使用 %name% 形式，不要删掉它们
+# ============================================================
+prefix: "<gradient:#5ee7ff:#a06bff><bold>Duel</bold></gradient> <dark_gray>»</dark_gray> "
+
+general:
+  no-permission: "<red>你没有权限这么做。"
+  player-only: "<red>该命令只能由玩家执行。"
+  unknown-player: "<red>找不到玩家 <white>%player%</white>。"
+  player-offline: "<red>玩家 <white>%player%</white> 当前不在线。"
+  unknown-mode: "<red>未知模式 <white>%mode%</white>，使用 <white>/duel modes</white> 查看全部模式。"
+  reloaded: "<green>配置与语言文件已重新加载 <gray>(%ms%ms)</gray>。"
+  cooldown: "<red>操作太频繁，请等待 <white>%seconds%</white> 秒。"
+  self-target: "<red>你不能和自己对战。"
+  disabled: "<red>该功能已被服务器禁用。"
+
+duel:
+  invite-sent: "<gray>已向 <white>%player%</white> 发送 <white>%mode%</white> 的对战邀请，等待对方接受 <dark_gray>(60s)</dark_gray>。"
+  invite-received: "<gradient:#5ee7ff:#a06bff>%player%</gradient> <gray>邀请你进行 <white>%mode%</white> 对战！</gray> <click:run_command:'/duel accept %player%'><green><bold>[接受]</bold></green></click> <click:run_command:'/duel deny %player%'><red><bold>[拒绝]</bold></red></click>"
+  invite-expired: "<red>来自 <white>%player%</white> 的邀请已过期。"
+  invite-denied: "<red><white>%player%</white> 拒绝对战邀请。"
+  invite-denied-target: "<gray>你拒绝了 <white>%player%</white> 的对战邀请。"
+  already-invited: "<red>你已经向该玩家发送过邀请，请稍后再试。"
+  no-invite: "<red>你没有来自该玩家的待处理邀请。"
+  busy: "<red>你当前正在对局或排队中，请先退出。"
+  target-busy: "<red><white>%player%</white> 正在对局或排队中。"
+  accept-broadcast: "<gray>» <white>%player%</white> 接受了 <white>%target%</white> 的 <white>%mode%</white> 挑战。"
+  no-arena: "<red>没有空闲的竞技场，请稍后再试。"
+  starting: "<green>对战即将开始！"
+  countdown: "<yellow><bold>%seconds%</bold></yellow>"
+  fight: "<gradient:#ff2d55:#ffd60a><bold>FIGHT!</bold></gradient>"
+  time-left: "<gray>剩余 <white>%time%</white>"
+  won: "<gradient:#00ffa3:#00d4ff><bold>胜利！</bold></gradient> <gray>你击败了 <white>%loser%</white> <dark_gray>(%reason%)</dark_gray>"
+  lost: "<gradient:#ff4d6d:#ff8fa3><bold>失败</bold></gradient> <gray>你被 <white>%winner%</white> 击败 <dark_gray>(%reason%)</dark_gray>"
+  draw: "<yellow><bold>平局</bold></yellow> <gray>双方都未能取得优势。"
+  broadcast-win: "<gray>» <white>%winner%</white> <gray>在 <white>%mode%</white> 中击败了 <white>%loser%</white> <dark_gray>(%reason%)</dark_gray>"
+  left-match: "<red>你离开了对战，判定为失败。"
+  opponent-left: "<green>你的对手离开了对战，你获得胜利。"
+  end-delay: "<gray>%seconds% 秒后返回原位置…"
+  restored: "<green>你的物品与状态已安全还原。"
+  restore-failed: "<red><bold>警告：</bold> 还原你的数据时出现问题，已为你创建备份，请联系管理员。"
+
+  spectate-start: "<gray>正在观战 <white>%player%</white> <dark_gray>(/duel spectate stop 退出)</dark_gray>"
+  spectate-stop: "<gray>已退出观战。"
+  spectate-not-in-match: "<red>该玩家当前不在对局中。"
+  spectate-full: "<red>该对局观战人数已满。"
+
+queue:
+  joined: "<green>已加入 <white>%mode%</white> <gray>(%type%)</gray> 队列，当前 <white>%size%</white> 人排队。"
+  left: "<gray>已离开匹配队列。"
+  not-queued: "<red>你不在队列中。"
+  already-queued: "<red>你已经在队列中了。"
+  matched: "<gradient:#00ffa3:#00d4ff><bold>匹配成功！</bold></gradient> <gray>对手：<white>%player%</white> · 模式：<white>%mode%</white></gray>"
+  searching: "<gray>%mode%</gray> <dark_gray>|</dark_gray> <white>%time%s</white> <dark_gray>|</dark_gray> <gray>队列 %size% 人 · 搜索范围 ±%range%</gray>"
+  ranked-disabled: "<red>排位模式当前未开放。"
+
+stats:
+  header: "<gradient:#5ee7ff:#a06bff><bold>%player% 的对战数据</bold></gradient>"
+  line: "<gray>%label%<dark_gray>: </dark_gray><white>%value%</white>"
+  no-data: "<gray>暂无对战记录，快去打一局吧！"
+
+admin:
+  arena-list-header: "<gray>竞技场列表 <dark_gray>(%count%)</dark_gray>"
+  arena-line: "<gray>#%id% <white>%kind%</white> <dark_gray>|</dark_gray> %state% <dark_gray>|</dark_gray> <white>%pos%</white>"
+  arena-tp: "<green>已传送到竞技场 <white>#%id%</white>。"
+  arena-rebuilt: "<green>竞技场 <white>#%id%</white> 已重建。"
+  arena-unknown: "<red>竞技场 <white>%id%</white> 不存在。"
+  snapshot-list: "<gray>待还原快照：<white>%count%</white> 个%detail%"
+  snapshot-none: "<green>没有待还原的快照，一切正常。"
+  snapshot-recovered: "<green>已为 <white>%player%</white> 还原快照。"
+  profile-reset: "<green>已重置 <white>%player%</white> 的战绩数据。"
+  season-reset: "<green>赛季已重置，当前赛季 <white>%season%</white>。"
+  world-created: "<green>竞技场世界 <white>%world%</white> 已创建。"
+  pregenerating: "<gray>正在预生成竞技场 <white>%done%/%total%</white>…"
+  pregenerated: "<green>竞技场预生成完成 <gray>(%ms%ms)</gray>，随时可以开战。"
+  version: "<gray>NewDuel1204 <white>v%version%</white> <dark_gray>|</dark_gray> <gray>Paper 1.20.4 <dark_gray>|</dark_gray> <gray>by my-txz</gray>"
